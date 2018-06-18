@@ -48,6 +48,11 @@ public class XAxis extends AxisBase {
     private boolean mAvoidFirstLastClipping = false;
 
     /**
+     * if set to true, the chart will translate a '\n' in the labels as a new line command
+     */
+    private boolean mMultiLineLabel = false;
+
+    /**
      * the position of the x-labels relative to the chart
      */
     private XAxisPosition mPosition = XAxisPosition.TOP;
@@ -114,5 +119,24 @@ public class XAxis extends AxisBase {
      */
     public boolean isAvoidFirstLastClippingEnabled() {
         return mAvoidFirstLastClipping;
+    }
+
+    /**
+     * returns true if multiline label is enabled, false if not
+     *
+     * @return
+     */
+    public boolean isMultiLineLabelEnabled() {
+        return mMultiLineLabel;
+    }
+
+
+    /**
+     * if set to true, the chart will translate a '\n' in the labels as a new line command
+     *
+     * @param enabled
+     */
+    public void setMultiLineLabel(boolean enabled) {
+        mMultiLineLabel = enabled;
     }
 }
