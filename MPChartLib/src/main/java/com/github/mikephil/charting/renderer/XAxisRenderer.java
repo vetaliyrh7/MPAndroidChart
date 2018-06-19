@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.graphics.Paint.Align;
 import android.graphics.Path;
 import android.graphics.RectF;
+import android.util.Log;
 
 import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.components.XAxis;
@@ -222,15 +223,21 @@ public class XAxisRenderer extends AxisRenderer {
                     }
                 }
 
-                drawLabel(c, label, x, pos, anchor, labelRotationAngleDegrees);
+                if (mXAxis.isMultiLineLabelEnabled()) {
+                    String[] labelLines = label.split("\n");
+                    int lineHeight = Utils.calcTextHeight(mAxisLabelPaint, labelLines[0]);
+                    int count = 0;
+                    for (String labelLine : labelLines) {
+                        drawLabel(c, labelLine, x, pos + (lineHeight * count), anchor, labelRotationAngleDegrees);
+                        count ++;
+                    }
+                } else
+                    drawLabel(c, label, x, pos, anchor, labelRotationAngleDegrees);
             }
         }
     }
 
     protected void drawLabel(Canvas c, String formattedLabel, float x, float y, MPPointF anchor, float angleDegrees) {
-        if (mXAxis.isMultiLineLabelEnabled()) {
-            Utils.drawXMultiLineText(c, formattedLabel, x, y, mAxisLabelPaint, anchor, angleDegrees);
-        } else
             Utils.drawXAxisValue(c, formattedLabel, x, y, mAxisLabelPaint, anchor, angleDegrees);
     }
 
