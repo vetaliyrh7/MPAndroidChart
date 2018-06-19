@@ -32,7 +32,7 @@ public class XAxisRenderer extends AxisRenderer {
 
         mAxisLabelPaint.setColor(Color.BLACK);
         mAxisLabelPaint.setTextAlign(Align.CENTER);
-        mAxisLabelPaint.setTextSize(Utils.convertDpToPixel(10f));
+        mAxisLabelPaint.setTextSize(Utils.convertDpToPixel(1f));
     }
 
     protected void setupGridPaint() {
@@ -228,7 +228,7 @@ public class XAxisRenderer extends AxisRenderer {
                     int lineHeight = Utils.calcTextHeight(mAxisLabelPaint, labelLines[0]);
                     int count = 0;
                     for (String labelLine : labelLines) {
-                        drawLabel(c, labelLine, x, pos + (lineHeight * count), anchor, labelRotationAngleDegrees);
+                        drawLabel(c, labelLine, x, pos + (lineHeight * count + (count > 0 ? mAxis.getYOffset() : 0)), anchor, labelRotationAngleDegrees);
                         count ++;
                     }
                 } else

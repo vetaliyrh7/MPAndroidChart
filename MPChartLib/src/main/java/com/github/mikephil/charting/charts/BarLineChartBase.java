@@ -491,7 +491,7 @@ public abstract class BarLineChartBase<T extends BarLineScatterCandleBubbleData<
                 // offsets for x-labels
                 if (mXAxis.getPosition() == XAxisPosition.BOTTOM) {
 
-                    offsetBottom += xLabelHeight;
+                    offsetBottom += xLabelHeight + 40;
 
                 } else if (mXAxis.getPosition() == XAxisPosition.TOP) {
 
